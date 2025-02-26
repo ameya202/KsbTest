@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Sliding Image Slider with Animation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 80%;
+            max-width: 800px;
+            overflow: hidden;
+        }
+
+        .slider-images {
+            display: flex;
+            animation: slideAnimation 15s infinite;
+        }
+
+        .slider-images img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        @keyframes slideAnimation {
+            0% {
+                transform: translateX(0%);
+            }
+            25% {
+                transform: translateX(-100%);
+            }
+            50% {
+                transform: translateX(-100%);
+            }
+            75% {
+                transform: translateX(-200%);
+            }
+            100% {
+                transform: translateX(-200%);
+            }
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slider-container">
+        <div class="slider-images">
+            <img src="C:\Users\Scatterpie Analytics\Documents\KSB 2025\HOME SCREEN\KSB1.PNG" alt="Image 1">
+            <img src="C:\Users\Scatterpie Analytics\Documents\KSB 2025\HOME SCREEN\KSB2.PNG" alt="Image 2">
+            <img src="C:\Users\Scatterpie Analytics\Documents\KSB 2025\HOME SCREEN\KSB3.PNG" alt="Image 3">
+        </div>
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+    </div>
+
+    <script>
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+        const sliderImages = document.querySelector('.slider-images');
+        const images = document.querySelectorAll('.slider-images img');
+        let currentIndex = 0;
+
+        function updateSliderPosition() {
+            sliderImages.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+            updateSliderPosition();
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateSliderPosition();
+        });
+    </script>
+</body>
+</html>
