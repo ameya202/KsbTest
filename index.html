@@ -5,22 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auto Sliding Image Slider with Animation</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* Ensure the body and html fill the whole screen */
+        html, body {
             margin: 0;
             padding: 0;
+            height: 100%; /* Make sure body stretches the full screen height */
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: flex-start;
             align-items: center;
-            height: 100vh;
             background-color: #f4f4f4;
-            flex-direction: column; /* Make the body content stack vertically */
         }
 
-        /* Header Section */
+        /* Header section styling */
         .header {
             width: 100%;
-            text-align: center;
             padding: 20px;
             background-color: #333;
             color: white;
@@ -28,24 +27,26 @@
             justify-content: center;
             align-items: center;
             gap: 20px;
+            box-sizing: border-box;
         }
 
         .logo {
-            width: 50px; /* Adjust logo size */
+            width: 50px; /* Logo size */
             height: auto;
         }
 
         .header h1 {
-            font-size: 36px; /* Header font size */
+            font-size: 4vw; /* Responsive font size based on viewport width */
             margin: 0;
+            text-align: center;
         }
 
-        /* Slider Section */
+        /* Slider container to take the remaining space */
         .slider-container {
             position: relative;
-            width: 80%;
-            max-width: 1200px;
-            height: 70vh;
+            width: 100vw; /* Full width of the viewport */
+            height: 70vh; /* 70% of the viewport height */
+            max-height: 1000px; /* Max height of 1000px */
             overflow: hidden;
             border-radius: 10px;
         }
@@ -71,7 +72,7 @@
             border: none;
             padding: 10px;
             cursor: pointer;
-            font-size: 24px;
+            font-size: 2vw; /* Button size adjusts with viewport width */
             z-index: 1;
         }
 
@@ -86,25 +87,25 @@
         /* Responsive design for smaller screens */
         @media (max-width: 768px) {
             .header h1 {
-                font-size: 28px; /* Smaller font size on smaller screens */
+                font-size: 6vw; /* Smaller font size on mobile devices */
             }
 
             .slider-container {
-                width: 90%;
-                height: 60vh;
+                height: 50vh; /* Reduce height of slider on smaller screens */
             }
 
             .prev, .next {
-                font-size: 18px; /* Smaller buttons for smaller screens */
-                padding: 8px;
+                font-size: 4vw; /* Button size for small screens */
+                padding: 6px;
             }
         }
     </style>
 </head>
 <body>
+
     <!-- Header Section -->
     <div class="header">
-        <img src="logo.png" alt="Logo" class="logo"> <!-- Replace with your logo image -->
+        <img src="logo.png" alt="Logo" class="logo"> <!-- Replace with your logo -->
         <h1>My Image Slider</h1>
     </div>
 
@@ -154,5 +155,6 @@
 
         autoSlide(); // Start the auto slide function
     </script>
+
 </body>
 </html>
