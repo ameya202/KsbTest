@@ -14,44 +14,52 @@
             align-items: center;
             height: 100vh;
             background-color: #f4f4f4;
+            flex-direction: column; /* Make the body content stack vertically */
         }
 
+        /* Header Section */
+        .header {
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            width: 50px; /* Adjust logo size */
+            height: auto;
+        }
+
+        .header h1 {
+            font-size: 36px; /* Header font size */
+            margin: 0;
+        }
+
+        /* Slider Section */
         .slider-container {
             position: relative;
             width: 80%;
-            max-width: 1350px;
-            height: 600px;
+            max-width: 1200px;
+            height: 70vh;
             overflow: hidden;
+            border-radius: 10px;
         }
 
         .slider-images {
             display: flex;
-            animation: slideAnimation 15s infinite;
+            transition: transform 1s ease-in-out;
         }
 
         .slider-images img {
             width: 100%;
-            height: auto;
-            display: block;
+            height: 100%;
             object-fit: cover;
-        }
-
-        @keyframes slideAnimation {
-            0% {
-                transform: translateX(0%);
-            }
-            25% {
-                transform: translateX(-100%);
-            }
-            50% {
-                transform: translateX(-100%);
-            }
-            75% {
-                transform: translateX(-200%);
-            }
-            100% {
-                transform: translateX(-200%);
-            }
+            border-radius: 10px;
         }
 
         .prev, .next {
@@ -63,6 +71,8 @@
             border: none;
             padding: 10px;
             cursor: pointer;
+            font-size: 24px;
+            z-index: 1;
         }
 
         .prev {
@@ -72,9 +82,33 @@
         .next {
             right: 10px;
         }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 28px; /* Smaller font size on smaller screens */
+            }
+
+            .slider-container {
+                width: 90%;
+                height: 60vh;
+            }
+
+            .prev, .next {
+                font-size: 18px; /* Smaller buttons for smaller screens */
+                padding: 8px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Header Section -->
+    <div class="header">
+        <img src="logo.png" alt="Logo" class="logo"> <!-- Replace with your logo image -->
+        <h1>My Image Slider</h1>
+    </div>
+
+    <!-- Slider Section -->
     <div class="slider-container">
         <div class="slider-images">
             <img src="KSB1.PNG" alt="Image 1">
@@ -91,20 +125,34 @@
         const sliderImages = document.querySelector('.slider-images');
         const images = document.querySelectorAll('.slider-images img');
         let currentIndex = 0;
+        const totalImages = images.length;
 
+        // Function to update the position of the slider
         function updateSliderPosition() {
             sliderImages.style.transform = `translateX(-${currentIndex * 100}%)`;
         }
 
+        // Previous Button functionality
         prevButton.addEventListener('click', () => {
-            currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+            currentIndex = (currentIndex === 0) ? totalImages - 1 : currentIndex - 1;
             updateSliderPosition();
         });
 
+        // Next Button functionality
         nextButton.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % images.length;
+            currentIndex = (currentIndex + 1) % totalImages;
             updateSliderPosition();
         });
+
+        // Auto Slide functionality
+        function autoSlide() {
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % totalImages;
+                updateSliderPosition();
+            }, 5000); // Change image every 5 seconds
+        }
+
+        autoSlide(); // Start the auto slide function
     </script>
 </body>
 </html>
