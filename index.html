@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <style>
+    <style>
         /* Ensure the body and html fill the whole screen */
         html, body {
             margin: 0;
@@ -11,40 +11,16 @@
             height: 100%; /* Make sure body stretches the full screen height */
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: center;
             align-items: center;
             background-color: #000000;
         }
 
-        /* Header section styling */
-        .header {
-            width: 100%;
-            padding: 20px;
-            background-color: #333;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            box-sizing: border-box;
-        }
-
-        .logo {
-            width: 50px; /* Logo size */
-            height: auto;
-        }
-
-        .header h1 {
-            font-size: 4vw; /* Responsive font size based on viewport width */
-            margin: 0;
-            text-align: center;
-        }
-
-        /* Slider container to take the remaining space */
+        /* Slider container to take the full screen */
         .slider-container {
             position: relative;
-            width: 1000vw; /* Full width of the viewport */
-            height: 700vh; /* 70% of the viewport height */
+            width: 100vw; /* Full width of the viewport */
+            height: 70vh; /* 70% of the viewport height */
             max-height: 1000px; /* Max height of 1000px */
             overflow: hidden;
             border-radius: 10px;
@@ -56,8 +32,8 @@
         }
 
         .slider-images img {
-            width: 100%;
-            height: 100%;
+            width: 100%; /* Each image takes 100% of the container width */
+            height: 100%; /* Each image takes 100% of the container height */
             object-fit: cover;
             border-radius: 10px;
         }
@@ -85,10 +61,6 @@
 
         /* Responsive design for smaller screens */
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 6vw; /* Smaller font size on mobile devices */
-            }
-
             .slider-container {
                 height: 50vh; /* Reduce height of slider on smaller screens */
             }
@@ -101,12 +73,6 @@
     </style>
 </head>
 <body>
-
-    <!-- Header Section -->
-    <div class="header">
-        <img src="logo.png" alt="Logo" class="logo"> <!-- Replace with your logo -->
-        <h1>My Image Slider</h1>
-    </div>
 
     <!-- Slider Section -->
     <div class="slider-container">
